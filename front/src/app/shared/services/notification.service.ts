@@ -27,7 +27,7 @@ export class NotificationService {
   }
 
   public error(message: string, title?: string) {
-    this.toast.success(message,title, {
+    this.toast.error(message,title, {
       progressBar: true,
       progressAnimation: 'increasing',
       easeTime: 300,

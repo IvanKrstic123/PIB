@@ -1,12 +1,13 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEventType, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, mapTo, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { NotificationService } from './notification.service';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+  headers:  new HttpHeaders({ 'Content-Type': 'application/json' }), observe: 'response' 
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -17,18 +18,22 @@ export class AuthService {
 
   userData: null;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private notificationService: NotificationService) {
     this.auth = new BehaviorSubject<any>(
       JSON.parse(localStorage.getItem(this.JWT_TOKEN))
     )
   }
 
   signUp(user: { username: string, email: string, password: string }) {
-    return this.http.post(environment.API_ENDPOINT + 'api/auth/signup', user, httpOptions).pipe(
-      tap(message => console.log(message)),
+    return this.http.post<any>(environment.API_ENDPOINT + 'api/auth/signup', user).pipe(
       catchError((error) => {
-        console.log(error.error)
-        return of(false)
+        if(error.error.message === 'Email is already in use!') {
+          this.notificationService.error('Email is already in use!')
+        }
+        if (error.error.message === 'Username is already taken!') {
+          this.notificationService.warning('Username is already taken!')
+        }
+        return of(error.error.message)
       })
     )
   }
