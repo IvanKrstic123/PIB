@@ -20,7 +20,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, private notificationService: NotificationService) {
     this.auth = new BehaviorSubject<any>(
-      JSON.parse(localStorage.getItem(this.JWT_TOKEN))
+      localStorage.getItem(this.JWT_TOKEN)
     )
   }
 
@@ -57,6 +57,9 @@ export class AuthService {
     return this.auth.value;
   }
 
+  public getCurrentUser() {
+    return localStorage.getItem('user');
+}
   
   private loginUser(user: any) {
     this.removeJwtToken();
