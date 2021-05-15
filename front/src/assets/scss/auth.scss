@@ -15,7 +15,7 @@
 	box-sizing: border-box;
 }
 body {
-	background: #f6f5f7;
+	background: #dadada;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -27,6 +27,7 @@ body {
 h1 {
 	font-weight: bold;
 	margin: 0;
+	color: #2c3e50;
 }
 h2 {
 	text-align: center;
@@ -49,8 +50,8 @@ a {
 }
 button {
 	border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
+	border: 1px solid #2c3e50;
+	background-color: #2c3e50;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -58,6 +59,7 @@ button {
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
+	cursor: pointer;
 	&:active {
 		transform: scale(0.95);
 	}
@@ -89,7 +91,7 @@ input {
 .container {
 	background-color: #fff;
 	border-radius: 10px;
-	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	box-shadow: 0 0px 28px #2c3e50, 0 0px 10px #2c3e50;
 	position: relative;
 	overflow: hidden;
 	width: 768px;
@@ -150,8 +152,8 @@ input {
 }
 .overlay {
 	background: #FF416C;
-	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-	background: linear-gradient(to right, #FF4B2B, #FF416C);
+	background: -webkit-linear-gradient(to right, #2c3e50, #2c3e50);
+	background: linear-gradient(to right, #2c3e50, #2c3e50);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -176,6 +178,9 @@ input {
 	width: 50%;
 	transform: translateX(0);
 	transition: transform 0.6s ease-in-out;
+	h1 {
+		color: #dadada;
+	}
 }
 .overlay-left {
 	transform: translateX(-20%);
@@ -198,7 +203,7 @@ input {
 	}
 }
 footer {
-	background-color: #222;
+	background-color: #2c3e50;
 	color: #fff;
 	font-size: 14px;
 	bottom: 0;

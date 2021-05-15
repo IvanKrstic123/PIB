@@ -1,6 +1,7 @@
 nav {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  background: #222;
+  background: -webkit-linear-gradient(to right, #2c3e50, #2c3e50);
+	background: linear-gradient(to right, #2c3e50, #2c3e50);
   .menuItems {
     list-style: none;
     display: flex;

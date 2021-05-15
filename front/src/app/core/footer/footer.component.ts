@@ -6,11 +6,14 @@ import { AuthService } from 'src/app/shared/services/Auth.service';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
 })
-export class FooterComponent implements OnInit {
-  logUser: any = false;
-  constructor(private authService: AuthService) {}
+export class FooterComponent {
 
-  ngOnInit() {
-    this.logUser = this.authService.userData;
+  logUser: any = false;
+  
+  constructor(private authService: AuthService) {
+    if(this.authService.currentUserValue) {
+      this.logUser = true;
+    }
   }
+
 }

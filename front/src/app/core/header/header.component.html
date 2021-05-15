@@ -1,7 +1,7 @@
 <nav *ngIf="logUser">
   <ul class="menuItems">
-    <li><a data-item="Dashboard">Dashboard</a></li>
-    <li><a data-item="Tickets">Tickets</a></li>
+    <li><a data-item="Dashboard" [routerLink]="[ '/dashboard']">Dashboard</a></li>
+    <li><a data-item="Tickets" [routerLink]="[ '/tickets']">Tickets</a></li>
     <li><a data-item="Users">Users</a></li>
     <li><a data-item="Contact">Contact</a></li>
     <li (click)="logout()"><a data-item="Logout">Logout</a></li>
