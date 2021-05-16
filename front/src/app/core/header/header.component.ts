@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { SharedService } from './../../shared/services/shared.service';
+import { Component} from '@angular/core';
 import { AuthService } from 'src/app/shared/services/Auth.service';
 
 @Component({
@@ -7,16 +7,26 @@ import { AuthService } from 'src/app/shared/services/Auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent{
   logUser: any = false;
-  constructor(private authService: AuthService, private router: Router) {}
-
-  ngOnInit(): void {
-    this.logUser = this.authService.getCurrentUser();  //header.ts
+  counterShows: number = 0;
+  
+  constructor(private authService: AuthService, private sharedService: SharedService) {
+      if(this.authService.currentUserValue) {
+        this.logUser = true;
+      }
   }
+  
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.sharedService.manipulateShowSubject.subscribe(data => { 
+        this.counterShows = data.length;
+    })
+  }
+  
 
   logout() {
-    this.authService.logOutUser();
-    this.router.navigate(['auth']);
+    this.authService.logout();
   }
 }

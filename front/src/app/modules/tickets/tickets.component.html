@@ -1,3 +1,5 @@
-<p>
-  tickets works!
-</p>
+<app-theater-table
+  [data]="tickets | async"
+  [filterDataPlaceholder]="filterPlaceholder"
+>
+</app-theater-table>

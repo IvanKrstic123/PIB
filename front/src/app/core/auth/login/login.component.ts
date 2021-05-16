@@ -1,3 +1,4 @@
+import { SharedService } from './../../../shared/services/shared.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -17,8 +18,13 @@ export class LoginComponent implements OnInit {
     private builder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private notificationService: NotificationService
-  ) {}
+    private notificationService: NotificationService,
+    private shared: SharedService
+  ) {
+    if(this.authService.currentUserValue) {
+      this.router.navigate(['/'])
+    }
+  }
 
   ngOnInit() {
     this.initForm();
@@ -26,16 +32,19 @@ export class LoginComponent implements OnInit {
 
   private initForm() {
     this.loginForm = this.builder.group({
-      username: [null, [Validators.required]],
-      password: [null, [Validators.required, Validators.minLength(8)]],
+      username: [null, Validators.required],
+      password: [null, Validators.required],
     });
   }
 
   login() {
+    if (!this.shared.markInvalid(this.loginForm)) {
+      return false;
+    }
     this.authService.signIn(this.loginForm.value).subscribe((data) => {
       if (data) {
         this.notificationService.success('You loggin successfuly','Welcome')
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['/']);
       }
     });
   }
