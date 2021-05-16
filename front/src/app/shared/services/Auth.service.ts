@@ -64,11 +64,11 @@ export class AuthService {
   }
 
   public isLogged(user: any) {
-    console.log(user);
     this.userSubject.next(user);
   }
 
   private login(user) {
+    console.log(user)
     localStorage.setItem(this.USER_DATA, user);
     localStorage.setItem(this.JWT_TOKEN, user.accessToken);
   }
@@ -89,16 +89,15 @@ export class AuthService {
   }
 
   private handleExpiration(user: any) {
-    const time = 1000;
-    const expiration = new Date(new Date().getTime() + 1200 * 1000);
+    const time = 4000;
+    const expiration = new Date(new Date().getTime() + time * 1000);
     const newUser = {
       ...user,
       expiration,
     };
     this.userSubject.next(newUser);
-    localStorage.setItem(this.USER_DATA, newUser);
+    localStorage.setItem(this.USER_DATA, JSON.stringify(newUser));
     localStorage.setItem(this.JWT_TOKEN, newUser.accessToken)
-    this.autoLogout(1200 * 1000);
-    console.log(newUser);
+    this.autoLogout(time * 1000);
   }
 }

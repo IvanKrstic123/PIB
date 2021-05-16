@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
   providedIn: 'root',
 })
 export class SharedService {
-  
   public successfullRegistration = new BehaviorSubject<any>(null);
+  public manipulateShowSubject = new BehaviorSubject<any>([]);
 
   constructor(private notificationService: NotificationService) {}
 

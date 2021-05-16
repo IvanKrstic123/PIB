@@ -1,7 +1,7 @@
 nav {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   background: -webkit-linear-gradient(to right, #2c3e50, #2c3e50);
-	background: linear-gradient(to right, #2c3e50, #2c3e50);
+  background: linear-gradient(to right, #2c3e50, #2c3e50);
   .menuItems {
     list-style: none;
     display: flex;
@@ -24,7 +24,7 @@ nav {
           transition: 0.5s;
           color: rgb(218, 218, 218, 1);
           position: absolute;
-          top: 0;
+          top: 5px;
           bottom: 0;
           left: 0;
           right: 0;
@@ -38,7 +38,42 @@ nav {
             transition: all 0.5s ease-in-out;
           }
         }
+
+        .show-numbers {
+          position: absolute;
+          color: #f56d13;
+          background-color: #fdedec;
+          bottom: 11px;
+          right: -21px;
+          border-radius: 29%;
+          padding: 3px;
+          width: 19px;
+          height: 18px;
+          text-align: center;
+          font-size: 16px;
+          font-weight: bold;
+          display: inline;
+          animation: show .2s ease-in-out;
+        }
+        .hide-numbers {
+          display: none;
+        }
       }
     }
+  }
+}
+
+@keyframes show {
+  0% {
+    transform: scale(.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(.8);
+    opacity: 1;
   }
 }
