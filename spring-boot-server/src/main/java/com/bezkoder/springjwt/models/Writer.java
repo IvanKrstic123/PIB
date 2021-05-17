@@ -1,10 +1,12 @@
 package com.bezkoder.springjwt.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -23,15 +25,16 @@ public class Writer implements Serializable {
     private String surname;
 
     @NotBlank(message = "Date of birth required!")
-    private Timestamp birthDate;
+    private LocalDate birthDate;
 
     @OneToMany(mappedBy = "writer")
+    @JsonIgnore
     private Set<Performance> performances;
 
     public Writer() {
     }
 
-    public Writer(Long id, @NotBlank(message = "Writer name required!") @Size(max = 30) String name, @NotBlank(message = "Writer surname required") @Size(max = 30) String surname, @NotBlank(message = "Date of birth required!") Timestamp birthDate, Set<Performance> performances) {
+    public Writer(Long id, @NotBlank(message = "Writer name required!") @Size(max = 30) String name, @NotBlank(message = "Writer surname required") @Size(max = 30) String surname, @NotBlank(message = "Date of birth required!") LocalDate birthDate, Set<Performance> performances) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -39,11 +42,11 @@ public class Writer implements Serializable {
         this.performances = performances;
     }
 
-    public Timestamp getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Timestamp birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 

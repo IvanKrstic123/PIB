@@ -1,5 +1,7 @@
 package com.bezkoder.springjwt.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -32,8 +34,8 @@ public class Performance implements Serializable {
     private Type type;
 
     @OneToMany(mappedBy = "performance")
+    @JsonIgnore
     private Set<Repertoire> repertoires;
-
 
 
     public Performance() {

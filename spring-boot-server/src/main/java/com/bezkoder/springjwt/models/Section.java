@@ -1,5 +1,7 @@
 package com.bezkoder.springjwt.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -18,6 +20,7 @@ public class Section implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "section")
+    @JsonIgnore
     private Set<Seat> seats;
 
     public Section() {

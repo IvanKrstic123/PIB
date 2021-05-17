@@ -1,5 +1,7 @@
 package com.bezkoder.springjwt.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -31,6 +33,7 @@ public class Person implements Serializable {
     private String password;
 
     @OneToMany(mappedBy = "person")
+    @JsonIgnore
     private Set<Ticket> tickets;
 
 
