@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  API_ENDPOINT: 'http://localhost:8080/'
+  API_ENDPOINT: 'http://localhost:8080/api/auth/'
 };

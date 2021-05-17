@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { NotificationService } from './notification.service';
+import { User } from 'src/app/core/models/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +36,7 @@ export class AuthService {
 
   signUp(user: { username: string; email: string; password: string }) {
     return this.http
-      .post<any>(environment.API_ENDPOINT + 'api/auth/signup', user)
+      .post<User>(environment.API_ENDPOINT + 'signup', user)
       .pipe(
         catchError((error) => {
           if (error.error.message === 'Email is already in use!') {
@@ -51,7 +52,7 @@ export class AuthService {
 
   signIn(user: { username: string; pasword: string }) {
     return this.http
-      .post<any>(environment.API_ENDPOINT + 'api/auth/signin', user)
+      .post<User>(environment.API_ENDPOINT + 'signin', user)
       .pipe(
         map((user) => {
           this.login(user);
@@ -90,6 +91,7 @@ export class AuthService {
 
   private handleExpiration(user: any) {
     const time = 4000;
+    console.log(btoa(user.password))
     const expiration = new Date(new Date().getTime() + time * 1000);
     const newUser = {
       ...user,

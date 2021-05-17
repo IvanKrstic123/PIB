@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -41,5 +42,10 @@ public class PerformanceServiceImpl implements PerformanceService {
     @Override
     public void deletePerformance(Long id) {
         performanceRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Performance> getAll() {
+        return performanceRepository.findAll();
     }
 }

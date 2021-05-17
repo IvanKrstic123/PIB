@@ -4,6 +4,7 @@ import com.bezkoder.springjwt.models.Performance;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface PerformanceService {
@@ -17,4 +18,6 @@ public interface PerformanceService {
     public Performance updatePerformance(Performance performance);
 
     public void deletePerformance(Long id);
+
+    public List<Performance> getAll();
 }

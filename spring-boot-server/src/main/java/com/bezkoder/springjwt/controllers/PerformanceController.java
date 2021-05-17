@@ -1,5 +1,7 @@
 package com.bezkoder.springjwt.controllers;
 
+import java.util.List;
+
 import com.bezkoder.springjwt.models.Performance;
 import com.bezkoder.springjwt.services.PerformanceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,10 @@ public class PerformanceController {
                                                 @RequestParam(defaultValue = "10") int pageSize,
                                                 @RequestParam(defaultValue = "ASC") Sort.Direction order){
         return performanceService.getAllPerformance(pageNumber, pageSize, order);
+    }
+    @GetMapping("/performances/get")
+    public List<Performance> getP(){
+        return performanceService.getAll();
     }
 
     @GetMapping("/performance/{id}")
