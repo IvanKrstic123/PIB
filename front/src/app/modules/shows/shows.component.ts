@@ -8,15 +8,26 @@ import { PerformancesService } from 'src/app/shared/services/performances.servic
   styleUrls: ['./shows.component.scss'],
 })
 export class ShowsComponent implements OnInit {
-  shows: Performance[] = [];
- 
+  shows: any[] = [];
   filterPlaceholder: string = 'Pretrazite predstave';
 
   constructor(private performancesService: PerformancesService) {}
 
   ngOnInit(): void {
-   this.performancesService.getPerformances().subscribe(data => this.shows = data);
+   this.performancesService.getPerformances().subscribe(data => {
+      for(const item of data) {
+        let premmaped = Object.assign(item);
+        console.log(premmaped)
+        this.shows.push({
+          id: +premmaped.id,
+          title: premmaped.title,
+          duration: premmaped.duration,
+          description: premmaped.description,
+          writer: premmaped.writer.name + " " + premmaped.writer.surname,
+          type: premmaped.type.type
 
-  
+        })
+      }
+   });
   }
 }

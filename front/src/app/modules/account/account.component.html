@@ -1,24 +1,24 @@
 <div class="login-box">
-    <h2>Azurirajte Vase podatke</h2>
-    <form [formGroup]="accountForm" (ngSubmit)="update()">
-      <div class="user-box">
-        <input formControlName="username" type="text">
-        <label>Username</label>
-      </div>
-      <div class="user-box">
-        <input formControlName="email" type="email">
-        <label>Email</label>
-      </div>
-      <div class="user-box">
-        <input formControlName="password" type="password">
-        <label>Password</label>
-      </div>
-      <a type="submit">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        Submit
-      </a>
-    </form>
-  </div>
+  <h2>Azurirajte Vase podatke</h2>
+  <form [formGroup]="accountForm" (ngSubmit)="update()">
+    <div class="user-box">
+      <input formControlName="username" type="text" />
+      <label>Username</label>
+    </div>
+    <div class="user-box">
+      <input formControlName="email" type="email" />
+      <label>Email</label>
+    </div>
+    <div class="user-box">
+      <input formControlName="password" type="password" />
+      <label>Password</label>
+    </div>
+    <a type="submit">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Submit
+    </a>
+  </form>
+</div>

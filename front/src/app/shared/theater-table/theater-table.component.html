@@ -75,6 +75,7 @@
             Dodaj
           </button>
           <button
+            *ngIf="router.url !== '/shows'"
             (click)="removeShow(dataSource.data[i])"
             mat-stroked-button
             color="warn"

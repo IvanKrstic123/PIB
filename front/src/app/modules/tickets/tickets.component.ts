@@ -13,6 +13,9 @@ export class TicketsComponent implements OnInit {
   constructor(private sharedService: SharedService) {}
 
   ngOnInit() {
-    this.tickets = this.sharedService.manipulateShowSubject;
+    this.sharedService.manipulateShowSubject.subscribe(data => {
+      this.tickets = data;
+      console.log(this.tickets)
+    })
   }
 }

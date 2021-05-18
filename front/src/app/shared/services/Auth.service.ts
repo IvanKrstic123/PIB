@@ -68,7 +68,7 @@ export class AuthService {
     this.userSubject.next(user);
   }
 
-  private login(user) {
+  public login(user) {
     console.log(user)
     localStorage.setItem(this.USER_DATA, user);
     localStorage.setItem(this.JWT_TOKEN, user.accessToken);

@@ -18,10 +18,14 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./theater-table.component.scss'],
 })
 export class TheaterTableComponent implements OnInit, AfterViewInit {
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   @Input() data: any[] = [];
+  @Input() filterDataPlaceholder: string = '';
+
+
   displayedColumns: any = [
     'Id',
     'Naziv',
@@ -31,8 +35,6 @@ export class TheaterTableComponent implements OnInit, AfterViewInit {
     'Zanr',
     'Kupovina',
   ];
-
-  @Input() filterDataPlaceholder: string = '';
 
   dataSource: MatTableDataSource<any>;
   dataCellDef: any[] = [];
@@ -68,13 +70,14 @@ export class TheaterTableComponent implements OnInit, AfterViewInit {
   }
 
   premappedObject(data: any) {
+    console.log(data)
     let mappedData = [];
     Object.entries(data).forEach((item) => {
       let value = item.pop();
+      console.log(value)
       this.dataCellDef.push(item.pop());
       mappedData = [...mappedData, value];
     });
-    console.log(this.dataCellDef[0]);
     return mappedData;
   }
 
@@ -91,14 +94,15 @@ export class TheaterTableComponent implements OnInit, AfterViewInit {
   }
 
   removeShow(item: any) {
-    const idx = this.manipulateShow.findIndex((x) => x.id === item.id);
+    const idx = this.data.findIndex((x) => x.id === item.id);
 
     if (idx !== -1) {
-      this.manipulateShow.splice(idx, 1);
-      this.sharedService.manipulateShowSubject.next(this.manipulateShow);
+      this.data.splice(idx, 1);
+      this.sharedService.manipulateShowSubject.next(this.data);
       this.notificationService.success(
         'Predstava je uspesno uklonjena iz korpe!'
       );
+      this.dataSource = new MatTableDataSource(this.data)
     } else {
       this.notificationService.error('Ovu predstavu ste uklonili vec!');
       return;

@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/shared/services/Auth.service';
 export class HeaderComponent{
   logUser: any = false;
   counterShows: number = 0;
-  
+  disableRepertoar: boolean = true;
   constructor(private authService: AuthService, private sharedService: SharedService) {
       if(this.authService.currentUserValue) {
         this.logUser = true;
@@ -18,11 +18,12 @@ export class HeaderComponent{
   }
   
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.sharedService.manipulateShowSubject.subscribe(data => { 
         this.counterShows = data.length;
     })
+    if(JSON.parse(localStorage.getItem('USER_DATA')).username !== 'admin'){
+      this.disableRepertoar = false;
+    }
   }
   
 
