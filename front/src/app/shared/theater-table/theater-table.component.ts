@@ -21,7 +21,7 @@ export class TheaterTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  @Input() data: any;
+  @Input() data: any[] = [];
   displayedColumns: any = [
     'Id',
     'Naziv',
@@ -49,6 +49,8 @@ export class TheaterTableComponent implements OnInit, AfterViewInit {
     const cellData = this.data.filter((data) => this.premappedObject(data));
 
     this.dataSource = new MatTableDataSource(cellData);
+
+    console.log(this.data + " FROM TABLE")
   }
 
   ngAfterViewInit() {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { PerformancesService } from 'src/app/shared/services/performances.service';
 
 @Component({
   selector: 'app-shows',
@@ -6,86 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shows.component.scss'],
 })
 export class ShowsComponent implements OnInit {
-  shows: any;
+  shows: Performance[] = [];
  
   filterPlaceholder: string = 'Pretrazite predstave';
 
-  constructor() {}
+  constructor(private performancesService: PerformancesService) {}
 
   ngOnInit(): void {
-    this.shows = [
-      {
-        id: 1,
-        name: 'Kostana',
-        duration: '90 min',
-        description: 'Izvodi se u Vranje, predstava Bore Stankovica...',
-        author: 'Bora Stankovic',
-        genre: 'Drama',
-      },
-      {
-        id: 2,
-        name: 'Kostana',
-        duration: '90 min',
-        description: 'Izvodi se u Vranje, predstava Bore Stankovica...',
-        author: 'Bora Stankovic',
-        genre: 'Drama',
-      },
-      {
-        id: 3,
-        name: 'Kostana',
-        duration: '90 min',
-        description: 'Izvodi se u Vranje, predstava Bore Stankovica...',
-        author: 'Bora Stankovic',
-        genre: 'Drama',
-      },
-      {
-        id: 4,
-        name: 'Kostana',
-        duration: '90 min',
-        description: 'Izvodi se u Vranje, predstava Bore Stankovica...',
-        author: 'Bora Stankovic',
-        genre: 'Drama',
-      },
-      {
-        id: 5,
-        name: 'Kostana',
-        duration: '90 min',
-        description: 'Izvodi se u Vranje, predstava Bore Stankovica...',
-        author: 'Bora Stankovic',
-        genre: 'Drama',
-      },
-      {
-        id: 6,
-        name: 'Kostana',
-        duration: '90 min',
-        description: 'Izvodi se u Vranje, predstava Bore Stankovica...',
-        author: 'Bora Stankovic',
-        genre: 'Drama',
-      },
-      {
-        id: 7,
-        name: 'Kostana',
-        duration: '90 min',
-        description: 'Izvodi se u Vranje, predstava Bore Stankovica...',
-        author: 'Bora Stankovic',
-        genre: 'Drama',
-      },
-      {
-        id: 8,
-        name: 'Kostana',
-        duration: '90 min',
-        description: 'Izvodi se u Vranje, predstava Bore Stankovica...',
-        author: 'Bora Stankovic',
-        genre: 'Drama',
-      },
-      {
-        id: 9,
-        name: 'Kostana',
-        duration: '90 min',
-        description: 'Izvodi se u Vranje, predstava Bore Stankovica...',
-        author: 'Bora Stankovic',
-        genre: 'Drama',
-      },
-    ];
+   this.performancesService.getPerformances().subscribe(data => this.shows = data);
+
+  
   }
 }
