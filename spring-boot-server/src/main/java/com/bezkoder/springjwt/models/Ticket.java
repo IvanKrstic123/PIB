@@ -24,8 +24,8 @@ public class Ticket implements Serializable {
     private Timestamp date;
 
     @ManyToOne
-    @JoinColumn(name = "person_id",referencedColumnName = "pin", nullable = false)
-    private Person person;
+    @JoinColumn(name = "user_id",referencedColumnName = "id", nullable = false)
+    private User user;
 
     @MapsId("id")
     @JoinColumns({
@@ -47,13 +47,13 @@ public class Ticket implements Serializable {
     public Ticket() {
     }
 
-    public Ticket(Long id, @NotBlank @Size(max = 20) String payment, @NotBlank int price, Timestamp date, Seat seat, Person person, Repertoire repertoire) {
+    public Ticket(Long id, @NotBlank @Size(max = 20) String payment, @NotBlank int price, Timestamp date, Seat seat, User user, Repertoire repertoire) {
         this.id = id;
         this.payment = payment;
         this.price = price;
         this.date = date;
         this.seat = seat;
-        this.person = person;
+        this.user = user;
         this.repertoire = repertoire;
     }
 
@@ -97,12 +97,12 @@ public class Ticket implements Serializable {
         this.seat = seat;
     }
 
-    public Person getPerson() {
-        return person;
+    public User getUser() {
+        return user;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
@@ -115,12 +115,12 @@ public class Ticket implements Serializable {
                 Objects.equals(payment, ticket1.payment) &&
                 Objects.equals(date, ticket1.date) &&
                 Objects.equals(seat, ticket1.seat) &&
-                Objects.equals(person, ticket1.person);
+                Objects.equals(user, ticket1.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, payment, price, date, seat, person);
+        return Objects.hash(id, payment, price, date, seat, user);
     }
 
 
