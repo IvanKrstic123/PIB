@@ -11,6 +11,7 @@ export class UserUpdateService {
   constructor(private http: HttpClient) { }
 
   updateUser(user: any) {
-    return this.http.post<User>(environment.API_ENDPOINT + '/update-user', user);
+    console.log(user)
+    return this.http.put<User>(environment.API_ENDPOINT + 'user/update', user);
   }
 }

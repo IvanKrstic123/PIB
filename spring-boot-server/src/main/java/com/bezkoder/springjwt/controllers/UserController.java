@@ -6,6 +6,7 @@ import com.bezkoder.springjwt.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,13 +19,20 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    PasswordEncoder encoder;
 
     @PutMapping("/update")
 
     public ResponseEntity<?> updateUser(@RequestBody User user){
-        User newUserData = new User();
         try{
-            return ResponseEntity.ok(userService.updateUser(user));
+            User user2 = new User();
+            user2.setId(user.getId());
+            user2.setUsername(user.getUsername());
+            user2.setEmail(user.getEmail());
+            user2.setPassword(encoder.encode(user.getPassword()));
+
+            return ResponseEntity.ok(userService.updateUser(user2));
         }
         catch (DataIntegrityViolationException e){
             return ResponseEntity

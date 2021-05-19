@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,5 +11,9 @@ export class PerformancesService {
 
   getPerformances() {
     return this.http.get<Performance[]>(environment.API_ENDPOINT + 'performances/get');
+  }
+
+  addPerformances(){
+    return this.http.post<Performance>(environment.API_ENDPOINT + 'performances/add', {});
   }
 }

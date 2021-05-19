@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name = "repertoire")
+@Table(name = "repertoires")
 public class Repertoire implements Serializable {
     @EmbeddedId
     private RepertoirePK repertoirePK;

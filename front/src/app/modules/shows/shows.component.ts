@@ -8,7 +8,7 @@ import { PerformancesService } from 'src/app/shared/services/performances.servic
   styleUrls: ['./shows.component.scss'],
 })
 export class ShowsComponent implements OnInit {
-  shows: any[] = [];
+  shows: any = [];
   filterPlaceholder: string = 'Pretrazite predstave';
 
   constructor(private performancesService: PerformancesService) {}

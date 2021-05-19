@@ -3,6 +3,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthRepository } from './core/guards/repository.guard';
 
 const routes: Routes = [
   {
@@ -35,6 +36,14 @@ const routes: Routes = [
         loadChildren: () =>
           import('./modules/account/account.module').then(
             (m) => m.AccountModule
+          ),
+      },
+      {
+        path: 'repertoars',
+        canActivate: [AuthRepository],
+        loadChildren: () =>
+          import('./modules/repertoars/repertoars.module').then(
+            (m) => m.RepertoarsModule
           ),
       },
     ],
