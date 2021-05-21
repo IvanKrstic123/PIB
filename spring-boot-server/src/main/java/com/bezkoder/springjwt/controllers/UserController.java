@@ -23,7 +23,6 @@ public class UserController {
     PasswordEncoder encoder;
 
     @PutMapping("/update")
-
     public ResponseEntity<?> updateUser(@RequestBody User user){
         try{
             User user2 = new User();

@@ -1,7 +1,5 @@
 package com.bezkoder.springjwt.controllers;
 
-import java.util.List;
-
 import com.bezkoder.springjwt.models.Performance;
 import com.bezkoder.springjwt.services.PerformanceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +8,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -34,17 +34,17 @@ public class PerformanceController {
         return performanceService.getAll();
     }
 
-    @GetMapping("/performance/{id}")
+    @GetMapping("/performances/{id}")
     public Performance getPerformanceById(@PathVariable("id") Long id){
         return performanceService.getById(id).orElse(null);
     }
 
-    @PutMapping("/performance/update")
+    @PutMapping("/performances/update")
     public Performance updatePerformance(@RequestBody Performance performance){
         return performanceService.updatePerformance(performance);
     }
 
-    @DeleteMapping("/performance/delete/{id}")
+    @DeleteMapping("/performances/delete/{id}")
     public void deletePerformanceById(@PathVariable("id") Long id){
         performanceService.deletePerformance(id);
     }

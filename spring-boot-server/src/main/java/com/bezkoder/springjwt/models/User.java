@@ -37,11 +37,8 @@ public class User implements Serializable {
 	@JsonIgnore
 	private Set<Ticket> tickets;
 
-/*	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(	name = "user_roles", 
-				joinColumns = @JoinColumn(name = "user_id"), 
-				inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<Role> roles = new HashSet<>();*/
+	@NotBlank
+	private int ticketMaxPrice;
 
 	public User() {
 	}
@@ -52,11 +49,12 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public User(String username, String email, String password, Set<Ticket> tickets) {
+	public User(String username, String email, String password, Set<Ticket> tickets, int ticketMaxPrice) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.tickets = tickets;
+		this.ticketMaxPrice = ticketMaxPrice;
 	}
 
 	public Long getId() {
@@ -97,6 +95,14 @@ public class User implements Serializable {
 
 	public void setTickets(Set<Ticket> tickets) {
 		this.tickets = tickets;
+	}
+
+	public int getTicketMaxPrice() {
+		return ticketMaxPrice;
+	}
+
+	public void setTicketMaxPrice(int ticketMaxPrice) {
+		this.ticketMaxPrice = ticketMaxPrice;
 	}
 
 /*	public Set<Role> getRoles() {

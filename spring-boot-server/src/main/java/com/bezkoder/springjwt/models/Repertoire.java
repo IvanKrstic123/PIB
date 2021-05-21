@@ -3,6 +3,7 @@ package com.bezkoder.springjwt.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -16,6 +17,9 @@ public class Repertoire implements Serializable {
     @JoinColumn(name = "performance_id", referencedColumnName = "id", nullable = false)
     private Performance performance;
 
+    @Size(max = 40)
+    private String performanceTitle;
+
     @OneToMany(mappedBy = "repertoire")
     @JsonIgnore
     private Set<Ticket> tickets;
@@ -24,9 +28,10 @@ public class Repertoire implements Serializable {
     public Repertoire() {
     }
 
-    public Repertoire(RepertoirePK repertoirePK, Performance performance, Set<Ticket> tickets) {
+    public Repertoire(RepertoirePK repertoirePK, Performance performance, @Size(max = 40) String performanceTitle, Set<Ticket> tickets) {
         this.repertoirePK = repertoirePK;
         this.performance = performance;
+        this.performanceTitle = performanceTitle;
         this.tickets = tickets;
     }
 

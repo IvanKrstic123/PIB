@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.sql.Timestamp;
 import java.util.Set;
 
 @Entity
@@ -25,7 +25,7 @@ public class Writer implements Serializable {
     private String surname;
 
     @NotBlank(message = "Date of birth required!")
-    private LocalDate birthDate;
+    private Timestamp birthDate;
 
     @OneToMany(mappedBy = "writer")
     @JsonIgnore
@@ -34,7 +34,7 @@ public class Writer implements Serializable {
     public Writer() {
     }
 
-    public Writer(Long id, @NotBlank(message = "Writer name required!") @Size(max = 30) String name, @NotBlank(message = "Writer surname required") @Size(max = 30) String surname, @NotBlank(message = "Date of birth required!") LocalDate birthDate, Set<Performance> performances) {
+    public Writer(Long id, @NotBlank(message = "Writer name required!") @Size(max = 30) String name, @NotBlank(message = "Writer surname required") @Size(max = 30) String surname, @NotBlank(message = "Date of birth required!") Timestamp birthDate, Set<Performance> performances) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -42,11 +42,11 @@ public class Writer implements Serializable {
         this.performances = performances;
     }
 
-    public LocalDate getBirthDate() {
+    public Timestamp getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(Timestamp birthDate) {
         this.birthDate = birthDate;
     }
 

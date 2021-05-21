@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
@@ -21,23 +20,21 @@ public class Ticket implements Serializable {
     @NotBlank
     private int price;
 
-    private Timestamp date;
-
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "id", nullable = false)
     private User user;
 
     @MapsId("id")
     @JoinColumns({
-            @JoinColumn(name = "id", referencedColumnName = "id"),
-            @JoinColumn(name = "queue", referencedColumnName = "queue")
+            @JoinColumn(name = "seat_id", referencedColumnName = "id"),
+            @JoinColumn(name = "queue_id", referencedColumnName = "queue")
     })
     @ManyToOne
     private Seat seat;
 
-    @MapsId("date")
+    @MapsId("date_id")
     @JoinColumns({
-            @JoinColumn(name = "date_id", referencedColumnName = "date"),
+            @JoinColumn(name = "date_id", referencedColumnName = "date_id"),
             @JoinColumn(name = "performance_id", referencedColumnName = "performance")
     })
     @ManyToOne
@@ -47,11 +44,10 @@ public class Ticket implements Serializable {
     public Ticket() {
     }
 
-    public Ticket(Long id, @NotBlank @Size(max = 20) String payment, @NotBlank int price, Timestamp date, Seat seat, User user, Repertoire repertoire) {
+    public Ticket(Long id, @NotBlank @Size(max = 20) String payment, @NotBlank int price, Seat seat, User user, Repertoire repertoire) {
         this.id = id;
         this.payment = payment;
         this.price = price;
-        this.date = date;
         this.seat = seat;
         this.user = user;
         this.repertoire = repertoire;
@@ -81,14 +77,6 @@ public class Ticket implements Serializable {
         this.price = price;
     }
 
-    public Timestamp getDate() {
-        return date;
-    }
-
-    public void setDate(Timestamp date) {
-        this.date = date;
-    }
-
     public Seat getSeat() {
         return seat;
     }
@@ -113,14 +101,13 @@ public class Ticket implements Serializable {
         return price == ticket1.price &&
                 Objects.equals(id, ticket1.id) &&
                 Objects.equals(payment, ticket1.payment) &&
-                Objects.equals(date, ticket1.date) &&
                 Objects.equals(seat, ticket1.seat) &&
                 Objects.equals(user, ticket1.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, payment, price, date, seat, user);
+        return Objects.hash(id, payment, price, seat, user);
     }
 
 

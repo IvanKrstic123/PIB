@@ -29,6 +29,9 @@ public class Performance implements Serializable {
     @JoinColumn(name = "writer_id", nullable = false)
     private Writer writer;
 
+    @Size(max = 20)
+    private String writerSurname;
+
     @ManyToOne
     @JoinColumn(name = "type_id", referencedColumnName = "id", nullable = false)
     private Type type;
@@ -41,12 +44,13 @@ public class Performance implements Serializable {
     public Performance() {
     }
 
-    public Performance(Long id, @NotBlank(message = "Title required!") @Size(max = 40) String title, @NotBlank(message = "Duration required!") String duration, @Size(max = 1000) String description, Writer writer, Type type, Set<Repertoire> repertoires) {
+    public Performance(Long id, @NotBlank(message = "Title required!") @Size(max = 40) String title, @NotBlank(message = "Duration required!") String duration, @Size(max = 1000) String description, Writer writer, @Size(max = 20) String writerSurname, Type type, Set<Repertoire> repertoires) {
         this.id = id;
         this.title = title;
         this.duration = duration;
         this.description = description;
         this.writer = writer;
+        this.writerSurname = writerSurname;
         this.type = type;
         this.repertoires = repertoires;
     }
@@ -105,5 +109,13 @@ public class Performance implements Serializable {
 
     public void setRepertoires(Set<Repertoire> repertoires) {
         this.repertoires = repertoires;
+    }
+
+    public String getWriterSurname() {
+        return writerSurname;
+    }
+
+    public void setWriterSurname(String writerSurname) {
+        this.writerSurname = writerSurname;
     }
 }

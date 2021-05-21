@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Embeddable
 public class RepertoirePK implements Serializable {
-    private Timestamp date;
+    private Timestamp date_id;
     private Long performance;
 
     @Override
@@ -15,12 +15,12 @@ public class RepertoirePK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RepertoirePK that = (RepertoirePK) o;
-        return Objects.equals(date, that.date) &&
+        return Objects.equals(date_id, that.date_id) &&
                 Objects.equals(performance, that.performance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, performance);
+        return Objects.hash(date_id, performance);
     }
 }
