@@ -1,46 +1,22 @@
-<div class="login-box" [ngClass]="{'login-box-active': isCollapse}">
-  <h2>Unesite novu predstavu</h2>
-  <form [formGroup]="repositoryForm" (ngSubmit)="addRepository()">
-    <div class="user-box">
-      <input formControlName="title" type="text" />
-      <label>Naziv</label>
-    </div>
-    <div class="user-box">
-      <input formControlName="duration" type="text" />
-      <label>Trajanje</label>
-    </div>
-    <div class="user-box">
-      <input formControlName="description" type="text" />
-      <label>Opis</label>
-    </div>
-
-    <button type="button" class="collapsible" (click)="toggle()">Unesite podatke o piscu</button>
-    <div class="content" [ngClass]="{'active': isCollapse}" >
-      <div class="user-box">
-        <input formControlName="writerName" type="text" />
-        <label>Ime</label>
-      </div>
-      <div class="user-box">
-        <input formControlName="writerSurname" type="text" />
-        <label>Prezime</label>
-      </div>
-      <div class="user-box">
-        <input formControlName="writerDate" type="text" />
-        <label>Datum</label>
+<div class="login-box">
+  <div *ngIf="stepCounter === 0">
+    <app-writer (writerEmit)="onWriter($event)"></app-writer>
+  </div>
+  <div *ngIf="stepCounter === 1">
+    <app-type-performance (typeEmit)="onType($event)"></app-type-performance>
+  </div>
+  <div *ngIf="stepCounter === 2">
+    <app-performance (perfromancEmit)="onPerformance($event)"></app-performance>
+  </div>
+  <div class="end" *ngIf="stepCounter === 3">
+    <div class="success-checkmark">
+      <div class="check-icon">
+        <span class="icon-line line-tip"></span>
+        <span class="icon-line line-long"></span>
+        <div class="icon-circle"></div>
+        <div class="icon-fix"></div>
       </div>
     </div>
-
-
-    <div class="user-box">
-      <input formControlName="type" type="text" />
-      <label>Type</label>
-    </div>
-    <button type="submit">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      Potvrdi
-    </button>
-  </form>
+    <div class="end__text">Uspesno ste uneli predstavu !</div>
+  </div>
 </div>
