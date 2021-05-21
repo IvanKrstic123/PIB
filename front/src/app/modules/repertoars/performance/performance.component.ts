@@ -1,3 +1,4 @@
+import { NotificationService } from './../../../shared/services/notification.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
@@ -31,7 +32,7 @@ export class PerformanceComponent implements OnInit {
   typeModel: any = null;
   writerModel: any = null;
 
-  constructor(private builder: FormBuilder) { }
+  constructor(private builder: FormBuilder, private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.initForm();
@@ -62,6 +63,10 @@ export class PerformanceComponent implements OnInit {
   }
 
   addPerformance() {
+    if(this.performanceForm.invalid) {
+      this.notificationService.error('Proverite jos jednom unos podataka...')
+      return
+    }
     this.perfromancEmit.emit(this.performanceForm.value);
   }
 
