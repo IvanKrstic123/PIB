@@ -15,7 +15,6 @@ export class ShowsComponent implements OnInit {
 
   ngOnInit(): void {
    this.performancesService.getPerformances().subscribe(data => {
-     console.log(data)
       for(const item of data) {
         let premmaped = Object.assign(item);
         this.shows.push({
@@ -24,8 +23,8 @@ export class ShowsComponent implements OnInit {
           duration: premmaped.duration,
           description: premmaped.description,
           writer: premmaped.writer.name + " " + premmaped.writer.surname,
-          type: premmaped.type.type
-
+          type: premmaped.type.type,
+          price: Math.floor(Math.random() * 10 * 200 + 300)
         })
       }
    });

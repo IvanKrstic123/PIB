@@ -11,6 +11,8 @@ export class HeaderComponent{
   logUser: any = false;
   counterShows: number = 0;
   disableRepertoar: boolean = true;
+  activeUser = JSON.parse(localStorage.getItem('USER_DATA'))
+  activeTickets?: any = JSON.parse(localStorage.getItem(this.activeUser.id));
   constructor(private authService: AuthService, private sharedService: SharedService) {
       if(this.authService.currentUserValue) {
         this.logUser = true;
@@ -24,7 +26,16 @@ export class HeaderComponent{
     if(JSON.parse(localStorage.getItem('USER_DATA')).username !== 'admin'){
       this.disableRepertoar = false;
     }
+
+    if(this.activeTickets?.length > 0) {
+      this.counterShows = this.activeTickets.length;
+    }
+    else {
+      this.counterShows = 0
+    }
   }
+
+
   
 
   logout() {

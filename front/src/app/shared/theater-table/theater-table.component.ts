@@ -25,6 +25,8 @@ export class TheaterTableComponent implements OnInit, AfterViewInit {
   @Input() data: any[] = [];
   @Input() filterDataPlaceholder: string = '';
 
+  activeUser = JSON.parse(localStorage.getItem('USER_DATA'))
+
 
   displayedColumns: any = [
     'Id',
@@ -33,6 +35,7 @@ export class TheaterTableComponent implements OnInit, AfterViewInit {
     'Opis',
     'Kreator',
     'Zanr',
+    'Cena',
     'Kupovina',
   ];
 
@@ -87,6 +90,8 @@ export class TheaterTableComponent implements OnInit, AfterViewInit {
     this.manipulateShow.push(item);
     this.notificationService.success('Predstava je uspesno dodata u korpu!');
     this.sharedService.manipulateShowSubject.next(this.manipulateShow);
+    localStorage.setItem(this.activeUser.id, JSON.stringify(this.manipulateShow));
+    console.log("DODATE " + this.manipulateShow)
   }
 
   removeShow(item: any) {
@@ -103,5 +108,21 @@ export class TheaterTableComponent implements OnInit, AfterViewInit {
       this.notificationService.error('Ovu predstavu ste uklonili vec!');
       return;
     }
+
+    const localReportoars = JSON.parse(localStorage.getItem(this.activeUser.id));
+    console.log("VRACENE 0" + localReportoars)
+     
+    const index = localReportoars.findIndex(data => data.id === item.id);
+    console.log("INDEX " + index)
+    
+    if(index !== -1) {
+          
+          localStorage.setItem(this.activeUser.id, JSON.stringify(this.data));
+    }
+    else {
+        localStorage.setItem(this.activeUser.id, JSON.stringify(this.data));
+    }
+    
+    
   }
 }

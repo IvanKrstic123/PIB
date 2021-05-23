@@ -1,5 +1,6 @@
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { Component, OnInit } from '@angular/core';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 @Component({
   selector: 'app-tickets',
   templateUrl: './tickets.component.html',
@@ -10,11 +11,27 @@ export class TicketsComponent implements OnInit {
 
   filterPlaceholder: string = 'Pretrazite predstave';
 
-  constructor(private sharedService: SharedService) {}
+  activeUser = JSON.parse(localStorage.getItem('USER_DATA'))
+  activeTickets?: any = JSON.parse(localStorage.getItem(this.activeUser.id));
+
+  constructor(private sharedService: SharedService, private notificationService: NotificationService) {}
 
   ngOnInit() {
+    
     this.sharedService.manipulateShowSubject.subscribe(data => {
       this.tickets = data;
     })
+    
+    if(this.activeTickets?.length > 0) {
+      this.tickets = this.activeTickets;
+    }
+    else {
+      this.tickets = []
+    }
+  }
+
+  buyTicekts() {
+    this.notificationService.success('Uspesno ste kupili karte. Vidimo se :)')
+    localStorage.removeItem(this.activeUser.id)
   }
 }

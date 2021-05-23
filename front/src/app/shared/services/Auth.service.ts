@@ -74,7 +74,8 @@ export class AuthService {
   }
 
   public logout() {
-    localStorage.clear();
+    localStorage.removeItem(this.USER_DATA);
+    localStorage.removeItem(this.JWT_TOKEN)
     this.userSubject.next(null);
     this.router.navigate(['/auth']);
   }

@@ -34,6 +34,7 @@ export class PerformanceComponent implements OnInit {
       writerSubscripton: this.performanceService.getWriter(),
       typeSubsciption: this.performanceService.getType()
     }).subscribe(({writerSubscripton,typeSubsciption }) => {
+     
       this.writerGroup = writerSubscripton;
       this.typeGroup = typeSubsciption;
     })
