@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-repertoars',
@@ -8,35 +7,53 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RepertoarsComponent implements OnInit {
 
-  repositoryForm: FormGroup;
-  isCollapse: boolean = false;
+  stepCounter: number = 0;
+  data: any;
 
-  constructor(private builder: FormBuilder) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.initForm();
   }
 
-  private initForm() {
-    this.repositoryForm = this.builder.group({
-      title: [null, Validators.required],
-      duration: [null, Validators.required],
-      description: [null, Validators.required],
-      writerName: [null, Validators.required],
-      writerSurname: [null, Validators.required],
-      writerDate: [null, Validators.required],
-      type: [null, Validators.required]
-    })
+  onWriter($event) {
+    if($event === 1) {
+      this.stepCounter = $event;
+      return;
+    }
+    this.stepCounter++;
+    this.data = {
+      ...$event
+    }
+  }
+  
+  onType($event) {
+    if($event === 0) {
+      this.stepCounter = $event;
+      return;
+    }
+    if($event === 2) {
+      this.stepCounter = $event;
+      return;
+    }
+    this.stepCounter++;
+    this.data = {
+      ...$event
+    }
   }
 
-  addRepository() {
+  onPerformance($event) {
+    if($event === 1) {
+      this.stepCounter = $event;
+      return;
+    }
+    this.stepCounter++;
+    this.data = {
+      ...this.data,
+      ...$event
+    }
 
+
+    console.log(this.data)
   }
-
-  toggle() {
-    
-    this.isCollapse = !this.isCollapse
-
-    console.log(this.isCollapse)
-  }
+  
 }
