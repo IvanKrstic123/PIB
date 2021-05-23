@@ -15,7 +15,6 @@ export class TicketsComponent implements OnInit {
   ngOnInit() {
     this.sharedService.manipulateShowSubject.subscribe(data => {
       this.tickets = data;
-      console.log(this.tickets)
     })
   }
 }

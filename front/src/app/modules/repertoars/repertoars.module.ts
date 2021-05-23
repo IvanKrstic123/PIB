@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 
 import { RepertoarsRoutingModule } from './repertoars-routing.module';
 import { RepertoarsComponent } from './repertoars.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TypePerformanceComponent } from './type-performance/type-performance.component';
 
@@ -15,14 +15,15 @@ import { NgSelectModule } from '@ng-select/ng-select';
     RepertoarsComponent,
     PerformanceComponent,
     WriterComponent,
-    TypePerformanceComponent
+    TypePerformanceComponent,
   ],
   imports: [
     CommonModule,
     RepertoarsRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     SharedModule,
-    NgSelectModule
+    NgSelectModule,
   ]
 })
 export class RepertoarsModule { }

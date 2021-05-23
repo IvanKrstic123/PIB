@@ -51,9 +51,10 @@ export class RepertoarsComponent implements OnInit {
       ...this.data,
       ...$event
     }
+  }
 
-
-    console.log(this.data)
+  again() {
+    this.stepCounter = 0;
   }
   
 }

@@ -15,9 +15,9 @@ export class ShowsComponent implements OnInit {
 
   ngOnInit(): void {
    this.performancesService.getPerformances().subscribe(data => {
+     console.log(data)
       for(const item of data) {
         let premmaped = Object.assign(item);
-        console.log(premmaped)
         this.shows.push({
           id: +premmaped.id,
           title: premmaped.title,

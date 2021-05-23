@@ -1,6 +1,7 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { UserUpdateService } from 'src/app/shared/services/user-update.service';
+import { tap } from 'rxjs/operators';
 
 
 @Component({
@@ -40,7 +41,6 @@ export class AccountComponent implements OnInit {
   }
 
   update() {
-    console.log("data")
     const data = JSON.parse(localStorage.getItem('USER_DATA'));
     const updateUser = {
       id: data.id,
@@ -49,7 +49,6 @@ export class AccountComponent implements OnInit {
       password: this.accountForm.get('password').value,
       roles: []
     }
-    this.userUpdateService.updateUser(updateUser).subscribe(data => 
-      console.log(data));
+    this.userUpdateService.updateUser(updateUser);
   }
 }

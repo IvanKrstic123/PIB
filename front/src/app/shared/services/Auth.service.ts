@@ -69,7 +69,6 @@ export class AuthService {
   }
 
   public login(user) {
-    console.log(user)
     localStorage.setItem(this.USER_DATA, user);
     localStorage.setItem(this.JWT_TOKEN, user.accessToken);
   }
@@ -91,7 +90,6 @@ export class AuthService {
 
   private handleExpiration(user: any) {
     const time = 4000;
-    console.log(btoa(user.password))
     const expiration = new Date(new Date().getTime() + time * 1000);
     const newUser = {
       ...user,

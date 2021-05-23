@@ -51,8 +51,6 @@ export class TheaterTableComponent implements OnInit, AfterViewInit {
     const cellData = this.data.filter((data) => this.premappedObject(data));
 
     this.dataSource = new MatTableDataSource(cellData);
-
-    console.log(this.data + " FROM TABLE")
   }
 
   ngAfterViewInit() {
@@ -70,11 +68,9 @@ export class TheaterTableComponent implements OnInit, AfterViewInit {
   }
 
   premappedObject(data: any) {
-    console.log(data)
     let mappedData = [];
     Object.entries(data).forEach((item) => {
       let value = item.pop();
-      console.log(value)
       this.dataCellDef.push(item.pop());
       mappedData = [...mappedData, value];
     });
