@@ -14,7 +14,8 @@ export class TypePerformanceComponent implements OnInit {
 
   constructor(
     private builder: FormBuilder,
-    private performancesService: PerformancesService
+    private performancesService: PerformancesService,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit() {
