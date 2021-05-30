@@ -21,8 +21,8 @@ export class SharedService {
         }
       });
       this.notificationService.warning(
-        'Please fill all required fields.',
-        'Warning:'
+        'Molimo Vas popunite lepo podatke, proverite Vas unos jos jednom.',
+        'Upozorenje:'
       );
       return false;
     } else {

@@ -35,6 +35,8 @@ export class RegisterComponent implements OnInit {
 
   register() {
     if (!this.shared.markInvalid(this.registerForm)) {
+      // this.notificationService.warning('Molimo Vas popunite lepo podatke, proverite Vas unos jos jednom.',
+      // 'Upozorenje:');
       return false;
     }
     const user = {
@@ -48,7 +50,7 @@ export class RegisterComponent implements OnInit {
       if (
         this.messageRegistration.message === 'User registered successfully!'
       ) {
-        this.notificationService.success('User registered successfully!');
+        this.notificationService.success('Uspesno ste kreirali nalog!');
         this.shared.successfullRegistration.next(false);
       }
     });

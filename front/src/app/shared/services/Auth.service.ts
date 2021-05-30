@@ -40,10 +40,10 @@ export class AuthService {
       .pipe(
         catchError((error) => {
           if (error.error.message === 'Email is already in use!') {
-            this.notificationService.error('Email is already in use!');
+            this.notificationService.error('Email se vec koristi!');
           }
           if (error.error.message === 'Username is already taken!') {
-            this.notificationService.warning('Username is already taken!');
+            this.notificationService.warning('Korisnicko ime je vec zauzeto!');
           }
           return of(error.error.message);
         })
