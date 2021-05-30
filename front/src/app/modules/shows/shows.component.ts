@@ -11,10 +11,12 @@ export class ShowsComponent implements OnInit {
   shows: any = [];
   filterPlaceholder: string = 'Pretrazite predstave';
 
-  constructor(private performancesService: PerformancesService) {}
+  constructor(private performancesService: PerformancesService) {
+  
+  }
 
   ngOnInit(): void {
-   this.performancesService.getPerformances().subscribe(data => {
+    this.performancesService.getPerformances().subscribe(data => {
       for(const item of data) {
         let premmaped = Object.assign(item);
         this.shows.push({

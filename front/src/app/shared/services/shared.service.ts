@@ -10,6 +10,8 @@ export class SharedService {
   public successfullRegistration = new BehaviorSubject<any>(null);
   public manipulateShowSubject = new BehaviorSubject<any>([]);
 
+  public editAdminPerfomance = new BehaviorSubject<any>(null);
+
   constructor(private notificationService: NotificationService) {}
 
   public markInvalid(formGroup: FormGroup) {
@@ -21,7 +23,7 @@ export class SharedService {
         }
       });
       this.notificationService.warning(
-        'Please fill all required fields.',
+        'Proverite unos podataka jos jednom!.',
         'Warning:'
       );
       return false;
@@ -34,5 +36,9 @@ export class SharedService {
       });
       return true;
     }
+  }
+
+  editPerformance(item: any) {
+    this.editAdminPerfomance.next(item);
   }
 }

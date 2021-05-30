@@ -32,6 +32,8 @@ export class TicketsComponent implements OnInit {
 
   buyTicekts() {
     this.notificationService.success('Uspesno ste kupili karte. Vidimo se :)')
+    this.tickets = []
+    this.sharedService.manipulateShowSubject.next(this.tickets)
     localStorage.removeItem(this.activeUser.id)
   }
 }

@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     }
     this.authService.signIn(this.loginForm.value).subscribe((data) => {
       if (data) {
-        this.notificationService.success('You loggin successfuly','Welcome')
+        this.notificationService.success('Uspesno ste se ulogovali!','Dobrodosli')
         this.router.navigate(['/']);
       }
     });
