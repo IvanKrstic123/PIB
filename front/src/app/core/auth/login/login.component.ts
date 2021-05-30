@@ -39,12 +39,16 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (!this.shared.markInvalid(this.loginForm)) {
+      this.notificationService.warning('Podaci nisu lepo uneseni, probajte ponovo','Warning')
       return false;
     }
     this.authService.signIn(this.loginForm.value).subscribe((data) => {
       if (data) {
         this.notificationService.success('Uspesno ste se ulogovali!','Dobrodosli')
         this.router.navigate(['/']);
+      }
+      else {
+        this.notificationService.error('Zao nam je, ne postoji takav account','Error')
       }
     });
   }
