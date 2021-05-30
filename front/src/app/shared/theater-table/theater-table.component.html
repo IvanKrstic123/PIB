@@ -58,8 +58,8 @@
       <td mat-cell *matCellDef="let row">{{ row[dataCellDef[5]] }}</td>
     </ng-container>
 
-     <!--Column -->
-     <ng-container matColumnDef="{{ displayedColumns[6] }}">
+    <!--Column -->
+    <ng-container matColumnDef="{{ displayedColumns[6] }}">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ displayedColumns[6] }}
       </th>
@@ -74,21 +74,21 @@
       <td mat-cell *matCellDef="let row; let i = index">
         <div class="example-button-row">
           <button
-            *ngIf="router.url !== '/tickets'"
+            *ngIf="router.url !== '/tickets' && activeUser.username !== 'admin'"
             (click)="addShow(dataSource.data[i])"
             mat-stroked-button
             color="primary"
-            style="margin-right: 10px;"
+            style="margin-right: 10px"
           >
             Dodaj
           </button>
           <button
-            *ngIf="router.url !== '/shows'"
+            *ngIf="router.url !== '/shows' || activeUser.username === 'admin'"
             (click)="removeShow(dataSource.data[i])"
             mat-stroked-button
             color="warn"
           >
-            Odustani
+            Ukloni
           </button>
         </div>
       </td>

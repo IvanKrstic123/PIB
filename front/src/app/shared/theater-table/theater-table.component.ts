@@ -11,6 +11,8 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { PerformancesService } from '../services/performances.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-theater-table',
@@ -46,6 +48,7 @@ export class TheaterTableComponent implements OnInit, AfterViewInit {
 
   constructor(
     private sharedService: SharedService,
+    private performanceService: PerformancesService,
     private notificationService: NotificationService,
     public router: Router
   ) {}
@@ -91,38 +94,41 @@ export class TheaterTableComponent implements OnInit, AfterViewInit {
     this.notificationService.success('Predstava je uspesno dodata u korpu!');
     this.sharedService.manipulateShowSubject.next(this.manipulateShow);
     localStorage.setItem(this.activeUser.id, JSON.stringify(this.manipulateShow));
-    console.log("DODATE " + this.manipulateShow)
   }
 
   removeShow(item: any) {
     const idx = this.data.findIndex((x) => x.id === item.id);
 
-    if (idx !== -1) {
-      this.data.splice(idx, 1);
-      this.sharedService.manipulateShowSubject.next(this.data);
-      this.notificationService.success(
-        'Predstava je uspesno uklonjena iz korpe!'
-      );
-      this.dataSource = new MatTableDataSource(this.data)
-    } else {
-      this.notificationService.error('Ovu predstavu ste uklonili vec!');
-      return;
-    }
-
-    const localReportoars = JSON.parse(localStorage.getItem(this.activeUser.id));
-    console.log("VRACENE 0" + localReportoars)
-     
-    const index = localReportoars.findIndex(data => data.id === item.id);
-    console.log("INDEX " + index)
-    
-    if(index !== -1) {
-          
+    if(this.activeUser.username !== 'admin') {
+      if (idx !== -1) {
+        this.data.splice(idx, 1);
+        this.sharedService.manipulateShowSubject.next(this.data);
+        this.notificationService.success(
+          'Predstava je uspesno uklonjena iz korpe!'
+        );
+        this.dataSource = new MatTableDataSource(this.data)
+      } else {
+        this.notificationService.error('Ovu predstavu ste uklonili vec!');
+        return;
+      }
+  
+      const localReportoars = JSON.parse(localStorage.getItem(this.activeUser.id));
+       
+      const index = localReportoars.findIndex(data => data.id === item.id);
+      
+      if(index !== -1) {
+            
+            localStorage.setItem(this.activeUser.id, JSON.stringify(this.data));
+      }
+      else {
           localStorage.setItem(this.activeUser.id, JSON.stringify(this.data));
+      }
     }
     else {
-        localStorage.setItem(this.activeUser.id, JSON.stringify(this.data));
+      this.performanceService.deletePerfomance(this.data[idx]);
+      this.data.splice(idx, 1);
+      this.dataSource = new MatTableDataSource(this.data)
     }
-    
     
   }
 }
