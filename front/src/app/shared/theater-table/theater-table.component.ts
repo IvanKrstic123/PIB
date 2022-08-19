@@ -12,7 +12,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PerformancesService } from '../services/performances.service';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-theater-table',
@@ -111,13 +110,13 @@ export class TheaterTableComponent implements OnInit, AfterViewInit {
         this.notificationService.error('Ovu predstavu ste uklonili vec!');
         return;
       }
-  
+
       const localReportoars = JSON.parse(localStorage.getItem(this.activeUser.id));
-       
+
       const index = localReportoars.findIndex(data => data.id === item.id);
-      
+
       if(index !== -1) {
-            
+
             localStorage.setItem(this.activeUser.id, JSON.stringify(this.data));
       }
       else {
@@ -129,6 +128,6 @@ export class TheaterTableComponent implements OnInit, AfterViewInit {
       this.data.splice(idx, 1);
       this.dataSource = new MatTableDataSource(this.data)
     }
-    
+
   }
 }
