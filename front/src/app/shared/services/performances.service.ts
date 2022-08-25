@@ -45,7 +45,7 @@ export class PerformancesService {
   }
 
   addWriter(writer: any) {
-    return this.http.post<any>(environment.API_ENDPOINT + 'writer/add', writer);
+    return this.http.post<any>(environment.API_ENDPOINT + 'writer/add', writer).subscribe();
   }
 
   getWriter() {
@@ -53,7 +53,7 @@ export class PerformancesService {
   }
 
   addType(type: any) {
-    return this.http.post<any>(environment.API_ENDPOINT + 'type/add', type);
+    return this.http.post<any>(environment.API_ENDPOINT + 'type/add', type).subscribe();
   }
 
   getType() {

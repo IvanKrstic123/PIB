@@ -19,6 +19,7 @@ public class TypeController {
 
     @PostMapping("/type/add")
     public ResponseEntity<Type> addType(@Valid @RequestBody Type type){
+        System.out.println(type);
         return ResponseEntity.ok(typeService.saveType(type));
     }
 
