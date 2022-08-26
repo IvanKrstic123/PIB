@@ -29,11 +29,13 @@ public class BootstrapData implements CommandLineRunner {
     private static Writer VOLFGANG_AMADEUS_MOCART;
     private static Writer DUSAN_KOVACEVIC;
     private static Writer ZELJKO_HUBAC;
+    private static Writer BRANISLAV_NUSIC;
 
     // type constants
     private static Type DRAMA;
     private static Type OPERA;
     private static Type BALLET;
+    private static Type COMEDY;
 
     public BootstrapData(TypeRepository typeRepository, WriterRepository writerRepository, PerformanceRepository performanceRepository) {
         this.typeRepository = typeRepository;
@@ -64,9 +66,13 @@ public class BootstrapData implements CommandLineRunner {
         BALLET = new Type();
         BALLET.setType("Balet");
 
+        COMEDY = new Type();
+        COMEDY.setType("Komedija");
+
         typeRepository.save(DRAMA);
         typeRepository.save(OPERA);
         typeRepository.save(BALLET);
+        typeRepository.save(COMEDY);
     }
 
     private void initWriters() {
@@ -120,6 +126,11 @@ public class BootstrapData implements CommandLineRunner {
         ZELJKO_HUBAC.setSurname("Hubac");
         ZELJKO_HUBAC.setBirthDate(Timestamp.valueOf("1971-9-9 9:15:15"));
 
+        BRANISLAV_NUSIC = new Writer();
+        BRANISLAV_NUSIC.setName("Branislav");
+        BRANISLAV_NUSIC.setSurname("Nusic");
+        BRANISLAV_NUSIC.setBirthDate(Timestamp.valueOf("1864-10-20 9:15:15"));
+
         writerRepository.save(FRANCESKO_CILEA);
         writerRepository.save(DJUZEPE_VERDI);
         writerRepository.save(RONALD_SAVKOVIC);
@@ -130,25 +141,26 @@ public class BootstrapData implements CommandLineRunner {
         writerRepository.save(VOLFGANG_AMADEUS_MOCART);
         writerRepository.save(DUSAN_KOVACEVIC);
         writerRepository.save(ZELJKO_HUBAC);
+        writerRepository.save(BRANISLAV_NUSIC);
     }
     private void initPerformances() {
         Performance performance = new Performance();
         performance.setTitle("ADRIJANA LEKUVRER");
-        performance.setDescription("Obnova opere je niz zabluda i nesporazuma, kako u mišljenju tako i u praksi. Nema obnove! Kad se posle nekoliko godina ponovo postavlja jedna opera u njoj je sve novo.");
+        performance.setDescription("Obnova opere je niz zabluda i nesporazuma, kako u mišljenju tako i u praksi. ");
         performance.setType(OPERA);
         performance.setWriter(FRANCESKO_CILEA);
         performance.setDuration("150");
 
         Performance performance1 = new Performance();
         performance1.setTitle("AIDA");
-        performance1.setDescription("Tri godine posle Don Karlosa, 16. jula 1870, Verdi je pisao jednom svome prijatelju: „Rekao sam vam da sam zauzet. Zamislite čime? Komponujem jednu operu za Kairo!");
+        performance1.setDescription("Tri godine posle Don Karlosa, 16. jula 1870, Verdi je pisao jednom svome prijatelju: „Komponujem jednu operu za Kairo!");
         performance1.setType(OPERA);
         performance1.setWriter(DJUZEPE_VERDI);
         performance1.setDuration("140");
 
         Performance performance2 = new Performance();
         performance2.setTitle("ALEKSANDAR");
-        performance2.setDescription("Slojevita ličnost Aleksandra Velikog, vojskovođe, poluboga, ljubavnika, osvajača sveta, otvara različite mogućnosti u dramaturškom pristupu.");
+        performance2.setDescription("Slojevita ličnost Aleksandra Velikog, vojskovođe, poluboga, ljubavnika, osvajača sveta.");
         performance2.setType(BALLET);
         performance2.setWriter(RONALD_SAVKOVIC);
         performance2.setDuration("120");
@@ -182,10 +194,10 @@ public class BootstrapData implements CommandLineRunner {
         performance6.setDuration("111");
 
         Performance performance7 = new Performance();
-        performance7.setTitle("");
-        performance7.setDescription("");
-        performance7.setType(OPERA);
-        performance7.setWriter(FRANCESKO_CILEA);
+        performance7.setTitle("VLAST");
+        performance7.setDescription("Nušićev duh, njegovu ličnost, njegovu književničku prirodu otkrivamo već u Narodnom poslaniku.");
+        performance7.setType(COMEDY);
+        performance7.setWriter(BRANISLAV_NUSIC);
         performance7.setDuration("122");
 
         Performance performance8 = new Performance();
@@ -197,21 +209,21 @@ public class BootstrapData implements CommandLineRunner {
 
         Performance performance9 = new Performance();
         performance9.setTitle("BALKANSKI ŠPIJUN");
-        performance9.setDescription("Bibliografija radova o delu Dušana Kovačevića sadrži na stotine studija, analiza, eseja, kritičkih prikaza, doktorskih disertacija, magistarskih i diplomskih radova. ");
+        performance9.setDescription("Bibliografija radova o delu Dušana Kovačevića sadrži na stotine studija, kritičkih prikaza, doktorskih disertacija i diplomskih radova. ");
         performance9.setType(DRAMA);
         performance9.setWriter(DUSAN_KOVACEVIC);
         performance9.setDuration("121");
 
         Performance performance10 = new Performance();
         performance10.setTitle("BASTIJEN I BASTIJENA");
-        performance10.setDescription("Jedna od najkraćih opera slavnog kompozitora Volfganga Amadeusa Mocarta, jednočinka Bastijen i Bastijena nastala je kada je Mocart imao samo dvanaest godina.");
+        performance10.setDescription("Jedna od najkraćih opera Volfganga Amadeusa Mocarta, Bastijen i Bastijena nastala je kada je Mocart imao samo dvanaest godina.");
         performance10.setType(OPERA);
         performance10.setWriter(VOLFGANG_AMADEUS_MOCART);
         performance10.setDuration("150");
 
         Performance performance11 = new Performance();
         performance11.setTitle("BELA KAFA");
-        performance11.setDescription("Novi pozorišni komad Aleksandra Popovića, Bela kafa, navodi na pomisao da se osobeni pozorišni koncept ovoga uglednog autora menja u najnovijem periodu stvaralaštva.");
+        performance11.setDescription("Novi pozorišni komad Aleksandra Popovića, Bela kafa, navodi na pomisao da se osobeni pozorišni koncept ovoga uglednog autora.");
         performance11.setType(DRAMA);
         performance11.setWriter(ALEKSANDAR_POPOVIC);
         performance11.setDuration("90");
