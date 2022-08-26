@@ -7,3 +7,5 @@ After installing Docker desktop navigate into root of this repo and run from CLI
     docker-compose up
     
 After a while application should be up and running on http://localhost:4200
+
+Note that if application is started for the first time it can make take a 3-4 minutes to build docker images. Also, if registering admin user, make sure that you are using **admin** username and remember credentials because so far there is no option to recover password.
