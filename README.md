@@ -1,3 +1,9 @@
-# Angular & Spring Framework & Oracle SQL
+# Angular & Spring Framework & MySQL with Docker
 
-University team project for Theatre Management system developed using Spring Framework, Angular and Oracle SQL Developer.
+To run application this application Docker Desktop is required for Windows
+
+After installing Docker desktop navigate into root of this repo and run from CLI following command:
+
+    docker-compose up
+    
+After a while application should be up and running on http://localhost:4200
